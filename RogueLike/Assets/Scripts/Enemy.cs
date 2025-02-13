@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float maxHP;
     public float HP;
     public float speed;
+    public float spawnTime;
 
 
     public Rigidbody2D target;
@@ -62,5 +63,4 @@ public class Enemy : MonoBehaviour
     {
 
     }
-
 }

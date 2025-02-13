@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviour
+public class EnemyPoolManager : MonoBehaviour
 {
     public GameObject[] prefabs;
     List<GameObject>[] pools;
@@ -20,22 +20,19 @@ public class PoolManager : MonoBehaviour
     {
        
         GameObject select = null;
-        //Debug.Log("PoolManager Awake Length"+pools.Length);
         foreach(GameObject item in pools[index])
         {
-            //Debug.Log("进入Select"+item.activeSelf);
+            
             if(!item.activeSelf)
             {
                 select = item;
                 select.SetActive(true);
-                //Debug.Log("获取"+index+"进入1");
                 break;
             }
         
         }
-        if(!select) //如果select不存在，则生成以下
+        if(!select) //如果select不存在，则实例化
         {
-           // Debug.Log("获取"+index+"进入了2");
             select = Instantiate(prefabs[index],transform);
             pools[index].Add(select);
                 

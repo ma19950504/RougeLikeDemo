@@ -6,16 +6,12 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;  
     
-    public PoolManager poolManager;
+    public EnemyPoolManager enemyPoolManager;
     public Player player;
 
     void Awake()
     {
         instance = this;
-        Debug.Log("GameManager Awake");
     }
-    void Start()
-    {
-        Debug.Log(GameManager.instance.player==null);
-    }
+
 }
