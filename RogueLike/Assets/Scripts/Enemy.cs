@@ -47,7 +47,6 @@ public class Enemy : MonoBehaviour
         if (distanceToTarget > threshold)
         {
             Vector2 moveDir = targetDir * speed * Time.fixedDeltaTime;
-            Debug.Log(Mathf.Abs(moveDir.x - targetDir.x));
             rb.MovePosition(rb.position + moveDir);
         }
         else

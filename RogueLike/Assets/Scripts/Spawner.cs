@@ -38,7 +38,6 @@ public class Spawner : MonoBehaviour
     public int GetEnemyType()
     {
         int enemyTypeLength = GameManager.instance.enemyPoolManager.prefabs.Length;
-        Debug.Log("enemyTypeLength:" + enemyTypeLength);
         enemyType = Random.Range(0, enemyTypeLength);
         return enemyType;
     }

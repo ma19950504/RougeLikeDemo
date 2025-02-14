@@ -7,12 +7,13 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator anim;
+    public Scanner scanner;
 
     public Vector2 moveDir;
     public Vector2 faceDir;
     public float speed;
 
-    public GameObject FireBall; // 技能预制体
+
 
 
     void Awake()
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        scanner = GetComponent<Scanner>();
         faceDir.x = 1;
     }
     void Update()

@@ -2,15 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBall : Skill
+public class FireBall : MonoBehaviour
 {
-    public GameObject fireballPrefab;
-    public Transform firePoint;
-    public float speed = 10f;
+    Rigidbody2D rb;
 
-    protected override void ActivateSkill()
+    public float damage;
+    public int per;
+
+    void Awake()
     {
-        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, Quaternion.identity);
-        fireball.GetComponent<Rigidbody2D>().velocity = Vector2.right * speed;
+        rb = GetComponent<Rigidbody2D>();
+    }
+    public void Init(float damage, int per, Vector3 dir)
+    {
+        this.damage = damage;
+        this.per = per;
+        if(per > -1){  //攻击次数
+            rb.velocity = dir * 15f;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(!collider.CompareTag("Enemy") || per == -1) return;
+        per--;
+        if(per == -1){
+            rb.velocity = Vector3.zero;
+            gameObject.SetActive(false);
+        }
+
     }
 }
