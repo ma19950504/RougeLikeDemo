@@ -6,8 +6,10 @@ public class SkillPoolManager : MonoBehaviour
 {
     public GameObject[] prefabs;
     List<GameObject>[] pools;
+    Player player;
     void Awake()
     {
+        player = GameManager.instance.player;
         pools = new List<GameObject>[prefabs.Length];
         for (int i = 0; i < prefabs.Length; i++)
         {

@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPoolManager: {fileID: 1862241136}
-  skillPoolManager: {fileID: 0}
+  skillPoolManager: {fileID: 2049613047}
   skill: {fileID: 0}
   player: {fileID: 1145793223}
 --- !u!1 &755943164
@@ -513,7 +513,6 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0}
   faceDir: {x: 0, y: 0}
   speed: 4
-  FireBall: {fileID: 2653722833249567555, guid: 7655c14898d0e9c43b029a9708239447, type: 3}
 --- !u!114 &1145793224
 MonoBehaviour:
   m_ObjectHideFlags: 0
