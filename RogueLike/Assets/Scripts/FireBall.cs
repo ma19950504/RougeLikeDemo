@@ -22,7 +22,12 @@ public class FireBall : MonoBehaviour
     {
         rb.position = playerPos.position;
         rb.velocity =  dir* moveSpeed;
-        sr.flipX = dir.x > 0 ? true : false; // 使用三元运算符
+        
+       
+        
+        transform.rotation = Quaternion.FromToRotation(Vector3.left,dir);
+
+        //sr.flipX = dir.x > 0 ? true : false; // 使用三元运算符
     }
     
 }

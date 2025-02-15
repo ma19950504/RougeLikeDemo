@@ -20,7 +20,7 @@ public class Scanner : MonoBehaviour
         nearestTarget = GetNearest();
         if (nearestTarget != null)
         {
-            CD = 2f;
+            CD = 1f;
             
             timer += Time.deltaTime;
             if (timer > CD)
@@ -59,8 +59,7 @@ public class Scanner : MonoBehaviour
     {
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
-        //Transform skill = GameManager.instance.skillPoolManager.Get(prefabsId).transform;
-        //skill.position = transform.position;
-        GameManager.instance.skillPoolManager.Get(prefabsId).GetComponent<FireBall>().Move(dir,transform);
+        GameObject fireBall =  GameManager.instance.skillPoolManager.Get(prefabsId);
+        fireBall.GetComponent<FireBall>().Move(dir,transform);
     }
 }
