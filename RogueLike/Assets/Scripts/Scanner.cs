@@ -9,29 +9,56 @@ public class Scanner : MonoBehaviour
     public LayerMask targetLayer;
     public RaycastHit2D[] targets; //射线命中,检测范围内怪物成功时返回命中的object
     public Transform nearestTarget;
-    int prefabsId;
-    float CD;
-    float timer;
 
+    private Dictionary<int, float> timers = new Dictionary<int, float>();
+    private Dictionary<int, float> cds = new Dictionary<int, float>();
+
+
+    void Start()
+    {
+        // 初始化每个 prefabsId 对应的冷却时间
+        for (int i = 0; i < 2; i++)
+        {
+            if (GameManager.instance.skillPoolManager.prefabs[i] != null)
+            {
+                if (i == 0)
+                {
+                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<FireBall>().CD;
+                }
+                else if (i == 1)
+                {
+                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Bullet>().CD;
+                }
+            }
+        }
+
+        // 初始化 timers 字典
+        for (int i = 0; i < 2; i++)
+        {
+            timers[i] = 0f;
+        }
+    }
     void FixedUpdate()
     {
+        Debug.Log(timers[0]+"=================="+timers[1]);
         // 当前对象的位置，射线范围，射线方向（全方向），最大距离（0为整个半径），检测图层
         targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
         nearestTarget = GetNearest();
-        if (nearestTarget != null)
+         if (nearestTarget != null)
         {
-            CD = 1f;
-            
-            timer += Time.deltaTime;
-            if (timer > CD)
+            foreach (var prefabsId in new int[] { 0, 1 })
             {
-                timer = 0f;
-                Fire(0);
-                
-            }
+                timers[prefabsId] += Time.deltaTime;
 
+                if (timers[prefabsId] > cds[prefabsId])
+                {
+                    timers[prefabsId] = 0f;
+                    Fire(prefabsId);
+                }
+            }
         }
     }
+
     Transform GetNearest()
     {
         Transform result = null;
@@ -59,7 +86,16 @@ public class Scanner : MonoBehaviour
     {
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
-        GameObject fireBall =  GameManager.instance.skillPoolManager.Get(prefabsId);
-        fireBall.GetComponent<FireBall>().Move(dir,transform);
+        if (prefabsId == 0)
+        {
+            GameObject fireBall = GameManager.instance.skillPoolManager.Get(prefabsId);
+            fireBall.GetComponent<FireBall>().Move(dir, transform);
+        }
+        else if (prefabsId == 1)
+        {
+            GameObject bullet = GameManager.instance.skillPoolManager.Get(prefabsId);
+            bullet.GetComponent<Bullet>().Move(dir, transform);
+        }
+
     }
 }

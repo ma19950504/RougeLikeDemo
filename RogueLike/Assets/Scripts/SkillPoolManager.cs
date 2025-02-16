@@ -23,7 +23,6 @@ public class SkillPoolManager : MonoBehaviour
         {
             if (pools[i].Count > 0)
             {
-                Debug.Log("jinru2");
                 timer += Time.deltaTime;
                 if (timer>2f)
                 {
