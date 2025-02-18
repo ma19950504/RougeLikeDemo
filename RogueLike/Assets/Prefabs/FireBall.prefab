@@ -13,11 +13,7 @@ GameObject:
   - component: {fileID: 3689305798175741381}
   - component: {fileID: 9013037456017100458}
   - component: {fileID: 164464999952355962}
-<<<<<<< Updated upstream
-  - component: {fileID: 7360125531005417099}
-=======
-  - component: {fileID: 3825119947837905260}
->>>>>>> Stashed changes
+  - component: {fileID: 5307992939392355969}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -175,11 +171,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0136027625, y: -0.024047676}
   m_Size: {x: 0.9931993, y: 0.58852345}
   m_Direction: 1
-<<<<<<< Updated upstream
---- !u!114 &7360125531005417099
-=======
---- !u!114 &3825119947837905260
->>>>>>> Stashed changes
+--- !u!114 &5307992939392355969
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,19 +180,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2653722833249567555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94b24a858e6ff425ca0532d75b5e0d76, type: 3}
+  m_Script: {fileID: 11500000, guid: a4b276daef27e4b409da093530fc6c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
   damage: 0
-  per: 0
-  moveSpeed: 0
-  CD: 0
-  originalDir: {x: 0, y: 0, z: 0}
-=======
-  damage: 5
-  per: 1
+  per: 2
   moveSpeed: 5
-  CD: 0.5
-  originalDir: {x: -1, y: 0, z: 0}
->>>>>>> Stashed changes
+  CD: 2

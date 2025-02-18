@@ -23,11 +23,11 @@ public class Scanner : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>().CD;
+                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<FireBall>().CD;
                 }
                 else if (i == 1)
                 {
-                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>().CD;
+                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Bullet>().CD;
                 }
             }
         }
@@ -86,23 +86,16 @@ public class Scanner : MonoBehaviour
     {
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
-<<<<<<< Updated upstream
         if (prefabsId == 0)
         {
             GameObject fireBall = GameManager.instance.skillPoolManager.Get(prefabsId);
-            fireBall.GetComponent<Projectile>().Move(dir, transform);
+            fireBall.GetComponent<FireBall>().Move(dir, transform);
         }
         else if (prefabsId == 1)
         {
             GameObject bullet = GameManager.instance.skillPoolManager.Get(prefabsId);
-            bullet.GetComponent<Projectile>().Move(dir, transform);
+            bullet.GetComponent<Bullet>().Move(dir, transform);
         }
 
-=======
-        GameObject fireBall =  GameManager.instance.skillPoolManager.Get(prefabsId);
-        fireBall.GetComponent<Projectile>().Move(dir,transform);
->>>>>>> Stashed changes
     }
-
-    //todo 定义一个projectile 发射体  然后所有skill使用这个脚本定义不同操作
 }

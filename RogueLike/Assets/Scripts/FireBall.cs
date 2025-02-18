@@ -29,13 +29,5 @@ public class FireBall : MonoBehaviour
 
         //sr.flipX = dir.x > 0 ? true : false; // 使用三元运算符
     }
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if(!collider.CompareTag("Enemy")) return;
-        
-            rb.velocity = Vector3.zero;
-            gameObject.SetActive(false);
-        
-
-    }
+    
 }

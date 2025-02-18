@@ -19,7 +19,6 @@ public class SkillPoolManager : MonoBehaviour
     }
     void Update()
     {
-<<<<<<< Updated upstream
         for (int i = 0; i < pools.Length; i++)
         {
             if (pools[i].Count > 0)
@@ -34,9 +33,9 @@ public class SkillPoolManager : MonoBehaviour
                         timer = 0;
                     
                 }
-=======
->>>>>>> Stashed changes
 
+            }
+        }
     }
 
     public GameObject Get(int index)
@@ -63,4 +62,3 @@ public class SkillPoolManager : MonoBehaviour
         return select;
     }
 }
-
