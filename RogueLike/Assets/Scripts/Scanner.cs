@@ -23,11 +23,11 @@ public class Scanner : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<FireBall>().CD;
+                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>().CD;
                 }
                 else if (i == 1)
                 {
-                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Bullet>().CD;
+                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>().CD;
                 }
             }
         }
@@ -89,12 +89,12 @@ public class Scanner : MonoBehaviour
         if (prefabsId == 0)
         {
             GameObject fireBall = GameManager.instance.skillPoolManager.Get(prefabsId);
-            fireBall.GetComponent<FireBall>().Move(dir, transform);
+            fireBall.GetComponent<Projectile>().Move(dir, transform);
         }
         else if (prefabsId == 1)
         {
             GameObject bullet = GameManager.instance.skillPoolManager.Get(prefabsId);
-            bullet.GetComponent<Bullet>().Move(dir, transform);
+            bullet.GetComponent<Projectile>().Move(dir, transform);
         }
 
     }
