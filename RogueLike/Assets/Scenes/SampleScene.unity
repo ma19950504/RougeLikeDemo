@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e48072487b64294c8157f0d998e21ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scanRange: 3
+  scanRange: 20
   targetLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -866,8 +866,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 5157859657425364743, guid: f24bad981dc90472191570b1a268074c, type: 3}
-  - {fileID: 3358192496474073544, guid: b685ec062240041d8977be70614fac86, type: 3}
-  - {fileID: 3457284950860327989, guid: de24585478df449ac8464ac9957903c4, type: 3}
 --- !u!4 &1862241137
 Transform:
   m_ObjectHideFlags: 0

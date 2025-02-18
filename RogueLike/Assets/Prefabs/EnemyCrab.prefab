@@ -125,7 +125,7 @@ MonoBehaviour:
   maxHP: 0
   HP: 0
   speed: 2
-  spawnTime: 1.5
+  spawnTime: 100
   target: {fileID: 0}
 --- !u!50 &7055344942529740732
 Rigidbody2D:
@@ -166,7 +166,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 9013037456017100458}
   - component: {fileID: 164464999952355962}
   - component: {fileID: 2284805107252467431}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FireBall
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  per: 3
+  per: 0
   moveSpeed: 5
-  CD: 1
+  CD: 1000
   srOriginallyDir: {x: -1, y: 0, z: 0}

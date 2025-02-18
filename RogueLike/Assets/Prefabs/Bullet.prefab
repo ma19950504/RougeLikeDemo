@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 9013037456017100458}
   - component: {fileID: 6712001899864240326}
   - component: {fileID: 5632019242046296311}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Skill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  per: 1
+  per: 2
   moveSpeed: 3
-  CD: 0.25
+  CD: 1
   srOriginallyDir: {x: 0, y: 0, z: 0}

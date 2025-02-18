@@ -24,7 +24,7 @@ public class SkillPoolManager : MonoBehaviour
             if (pools[i].Count > 0)
             {
                 timer += Time.deltaTime;
-                if (timer > 2f)
+                if (timer > 10f)
                 {
                     GameObject firstObject = pools[i][0];
                     Destroy(firstObject);
