@@ -86,6 +86,7 @@ public class Scanner : MonoBehaviour
     {
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
+<<<<<<< Updated upstream
         if (prefabsId == 0)
         {
             GameObject fireBall = GameManager.instance.skillPoolManager.Get(prefabsId);
@@ -97,5 +98,11 @@ public class Scanner : MonoBehaviour
             bullet.GetComponent<Projectile>().Move(dir, transform);
         }
 
+=======
+        GameObject fireBall =  GameManager.instance.skillPoolManager.Get(prefabsId);
+        fireBall.GetComponent<Projectile>().Move(dir,transform);
+>>>>>>> Stashed changes
     }
+
+    //todo 定义一个projectile 发射体  然后所有skill使用这个脚本定义不同操作
 }
