@@ -21,14 +21,7 @@ public class Scanner : MonoBehaviour
         {
             if (GameManager.instance.skillPoolManager.prefabs[i] != null)
             {
-                if (i == 0)
-                {
-                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<FireBall>().CD;
-                }
-                else if (i == 1)
-                {
-                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Bullet>().CD;
-                }
+                cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>().CD;
             }
         }
 
@@ -40,11 +33,10 @@ public class Scanner : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log(timers[0]+"=================="+timers[1]);
         // 当前对象的位置，射线范围，射线方向（全方向），最大距离（0为整个半径），检测图层
         targets = Physics2D.CircleCastAll(transform.position, scanRange, Vector2.zero, 0, targetLayer);
         nearestTarget = GetNearest();
-         if (nearestTarget != null)
+        if (nearestTarget != null)
         {
             foreach (var prefabsId in new int[] { 0, 1 })
             {
@@ -86,16 +78,7 @@ public class Scanner : MonoBehaviour
     {
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
-        if (prefabsId == 0)
-        {
-            GameObject fireBall = GameManager.instance.skillPoolManager.Get(prefabsId);
-            fireBall.GetComponent<FireBall>().Move(dir, transform);
-        }
-        else if (prefabsId == 1)
-        {
-            GameObject bullet = GameManager.instance.skillPoolManager.Get(prefabsId);
-            bullet.GetComponent<Bullet>().Move(dir, transform);
-        }
-
+        GameObject projectile = GameManager.instance.skillPoolManager.Get(prefabsId);
+        projectile.GetComponent<Projectile>().Fire(dir, transform);
     }
 }

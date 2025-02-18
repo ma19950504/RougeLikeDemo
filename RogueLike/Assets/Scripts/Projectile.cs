@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 
-public class FireBall : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -11,6 +10,8 @@ public class FireBall : MonoBehaviour
     public int per;
     public float moveSpeed;
     public float CD;
+    public Vector3 srOriginallyDir;
+    
     
     
 
@@ -19,16 +20,10 @@ public class FireBall : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
     }
-    public void Move(Vector3 dir,Transform playerPos)
+    public void Fire(Vector3 dir,Transform playerPos)
     {
         rb.position = playerPos.position;
         rb.velocity =  dir* moveSpeed;
-        
-       
-        
-        transform.rotation = Quaternion.FromToRotation(Vector3.left,dir);
-
-        //sr.flipX = dir.x > 0 ? true : false; // 使用三元运算符
+        transform.rotation = Quaternion.FromToRotation(srOriginallyDir,dir);
     }
-    
 }
