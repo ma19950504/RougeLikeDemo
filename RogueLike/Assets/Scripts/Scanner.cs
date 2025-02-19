@@ -79,6 +79,7 @@ public class Scanner : MonoBehaviour
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
         GameObject projectile = GameManager.instance.skillPoolManager.Get(prefabsId);
+        Debug.Log("per="+projectile.GetComponent<Projectile>().per);
         projectile.GetComponent<Projectile>().Fire(dir, transform);
     }
 }

@@ -124,8 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 0
   HP: 0
-  speed: 2
-  spawnTime: 5
+  speed: 1.5
+  spawnTime: 1
   target: {fileID: 0}
 --- !u!50 &2183384675408453735
 Rigidbody2D:
@@ -169,7 +169,7 @@ CapsuleCollider2D:
     m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 72
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

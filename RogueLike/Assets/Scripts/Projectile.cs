@@ -7,41 +7,49 @@ public class Projectile : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     public float damage;
-    public int per;
+    public int per; //穿透次数，为0则无法穿透
     public float moveSpeed;
     public float CD;
-    public Vector3 srOriginallyDir;
+    float initDamage;
+    int initPer;
+    float initMoveSpeed;
+    float initCD;
 
-
-
+    public Vector3 srInitDir;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        initPer =  GetComponent<Projectile>().per;
+    }
+    void Start()
+    {
+        
+    }
+    void OnEnable()
+    {
+        // damage = initDamage;
+        per = initPer;
+        // moveSpeed = initMoveSpeed;
+        // CD = initCD;
     }
     public void Fire(Vector3 dir, Transform playerPos)
     {
         rb.position = playerPos.position;
         rb.velocity = dir * moveSpeed;
-        transform.rotation = Quaternion.FromToRotation(srOriginallyDir, dir);
+        transform.rotation = Quaternion.FromToRotation(srInitDir, dir);
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") && per > 0)
-        {
-            Debug.Log("xian"+per);
-            Debug.Log("Hit");
-            per--;
-            Debug.Log("ranhou"+per);
-            if(per == 0){
-                gameObject.SetActive(false);
-            }
+        if(!other.CompareTag("Enemy") || per == -1) return;
+        per--;
+        if(per == -1){
+            rb.velocity = Vector3.zero;
+            gameObject.SetActive(false);
         }
-        // else if (other.CompareTag("Enemy") && per == 1)
-        // {
-        //     per--;
-        //     gameObject.SetActive(false);
-        // }
+
     }
+
 }
