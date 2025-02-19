@@ -8,6 +8,7 @@ public class SkillPoolManager : MonoBehaviour
     List<GameObject>[] pools;
     Player player;
     float timer;
+
     void Awake()
     {
         player = GameManager.instance.player;

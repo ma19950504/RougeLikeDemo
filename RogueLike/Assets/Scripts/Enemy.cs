@@ -12,8 +12,9 @@ public class Enemy : MonoBehaviour
     public float damage;
     public float speed;
     public float spawnTime;
+    public bool beatBack;
 
-
+    WaitForFixedUpdate wait;
     public Rigidbody2D target;
 
     void Awake()
@@ -21,6 +22,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        wait = new WaitForFixedUpdate();
     }
     void OnEnable()
     {
@@ -30,50 +32,70 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.instance != null && GameManager.instance.player != null)
         {
-            
             target = GameManager.instance.player.GetComponent<Rigidbody2D>();
-            if (target == null)
-            {
-                Debug.LogError("Player does not have a Rigidbody2D component.");
-            }
-        }
-        else
-        {
-            Debug.LogError("GameManager or Player not found!");
         }
 
+
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            beatBack = true;
+        }
+    }
+
     void FixedUpdate()
     {
         Vector2 targetDir = (target.transform.position - transform.position).normalized;
         float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
         float threshold = 0.1f; // 设置最近距离
-
-        if (distanceToTarget > threshold)
+        Vector2 moveDir = (targetDir * speed * Time.fixedDeltaTime - rb.position).normalized;
+        if (beatBack)
         {
-            Vector2 moveDir = targetDir * speed * Time.fixedDeltaTime;
-            rb.MovePosition(rb.position + moveDir);
+            rb.AddForce(-moveDir * 5, ForceMode2D.Impulse);
+            beatBack = false;
         }
         else
         {
-            // 当敌人接近目标时，停止移动
-            rb.MovePosition(rb.position);
+            if (distanceToTarget > threshold)
+            {
+
+                rb.velocity = moveDir;
+            }
+            else
+            {
+                // 当敌人接近目标时，停止移动
+                rb.velocity = (rb.position);
+            }
         }
 
+
         sr.flipX = targetDir.x < 0;
+
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Skill"))
         {
-            if(HP>0){
+            if (HP > 0)
+            {
                 HP -= collider.GetComponent<Projectile>().damage;
-                Debug.Log("Enemy HP:" + HP);
-                Debug.Log("damage:" + collider.GetComponent<Projectile>().damage);
-            }else{
+                //StartCoroutine(KnockBack());
+                beatBack = true;
+            }
+            else
+            {
                 gameObject.SetActive(false);
             }
         }
+    }
+    IEnumerator KnockBack() //击退 
+    {
+        yield return wait;
+        Vector3 playPos = GameManager.instance.player.transform.position;
+        Vector3 dir = (transform.position - playPos).normalized;
+        // rb.AddForce(dir * 100, ForceMode2D.Impulse);
     }
 }

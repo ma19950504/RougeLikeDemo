@@ -14,19 +14,18 @@ public class Projectile : MonoBehaviour
     int initPer;
     float initMoveSpeed;
     float initCD;
-
+    public bool canBeatBack;
+    public float backForce;
+    public bool beatBack;
     public Vector3 srInitDir;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        initPer =  GetComponent<Projectile>().per;
+        initPer = GetComponent<Projectile>().per;
     }
-    void Start()
-    {
-        
-    }
+
     void OnEnable()
     {
         // damage = initDamage;
@@ -40,16 +39,18 @@ public class Projectile : MonoBehaviour
         rb.velocity = dir * moveSpeed;
         transform.rotation = Quaternion.FromToRotation(srInitDir, dir);
     }
-    
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(!other.CompareTag("Enemy") || per == -1) return;
+       
+        if (!other.CompareTag("Enemy") || per == -1) return;
         per--;
-        if(per == -1){
+        if (per == -1)
+        {
             rb.velocity = Vector3.zero;
             gameObject.SetActive(false);
         }
 
     }
-
+  
 }

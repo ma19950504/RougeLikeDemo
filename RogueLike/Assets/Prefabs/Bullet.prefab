@@ -165,4 +165,6 @@ MonoBehaviour:
   per: 1
   moveSpeed: 6
   CD: 0.5
+  canBeatBack: 0
+  backForce: 100
   srInitDir: {x: 0, y: 0, z: 0}

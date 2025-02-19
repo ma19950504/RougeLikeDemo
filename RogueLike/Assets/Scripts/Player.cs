@@ -31,9 +31,11 @@ public class Player : MonoBehaviour
     {
         Move();
         //SkillSpawn();
+        
     }
     void FixedUpdate()
     {
+        
     }
     public void Move()
     {
