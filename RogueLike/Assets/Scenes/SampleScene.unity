@@ -513,7 +513,7 @@ MonoBehaviour:
   moveDir: {x: 0, y: 0}
   faceDir: {x: 0, y: 0}
   HP: 0
-  maxHP: 100
+  maxHP: 9999999
   speed: 4
 --- !u!114 &1145793224
 MonoBehaviour:
