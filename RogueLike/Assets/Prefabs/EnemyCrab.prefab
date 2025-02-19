@@ -122,10 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eacc1666e51db43abba7adb6d72560f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
+  maxHP: 12
   HP: 0
+  damage: 15
   speed: 1
-  spawnTime: 2
+  spawnTime: 1
   target: {fileID: 0}
 --- !u!50 &7055344942529740732
 Rigidbody2D:

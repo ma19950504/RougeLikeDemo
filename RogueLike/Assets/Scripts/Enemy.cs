@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     Collider2D col;
     public float maxHP;
     public float HP;
+    public float damage;
     public float speed;
     public float spawnTime;
 
@@ -20,6 +21,10 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+    }
+    void OnEnable()
+    {
+        HP = maxHP;
     }
     void Start()
     {
@@ -60,6 +65,15 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-
+        if (collider.CompareTag("Skill"))
+        {
+            if(HP>0){
+                HP -= collider.GetComponent<Projectile>().damage;
+                Debug.Log("Enemy HP:" + HP);
+                Debug.Log("damage:" + collider.GetComponent<Projectile>().damage);
+            }else{
+                gameObject.SetActive(false);
+            }
+        }
     }
 }

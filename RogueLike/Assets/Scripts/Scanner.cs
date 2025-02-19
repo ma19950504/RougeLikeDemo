@@ -38,7 +38,8 @@ public class Scanner : MonoBehaviour
         nearestTarget = GetNearest();
         if (nearestTarget != null)
         {
-            foreach (var prefabsId in new int[] { 0, 1 })
+
+            for (int prefabsId = 0; prefabsId <= GameManager.instance.skillPoolManager.prefabs.Length - 1; prefabsId++)
             {
                 timers[prefabsId] += Time.deltaTime;
 
@@ -79,7 +80,6 @@ public class Scanner : MonoBehaviour
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
         GameObject projectile = GameManager.instance.skillPoolManager.Get(prefabsId);
-        Debug.Log("per="+projectile.GetComponent<Projectile>().per);
         projectile.GetComponent<Projectile>().Fire(dir, transform);
     }
 }

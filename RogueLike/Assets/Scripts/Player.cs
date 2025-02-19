@@ -11,10 +11,9 @@ public class Player : MonoBehaviour
 
     public Vector2 moveDir;
     public Vector2 faceDir;
+    public float HP;
+    public float maxHP;
     public float speed;
-
-
-
 
     void Awake()
     {
@@ -23,6 +22,10 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         faceDir.x = 1;
+    }
+    void OnEnable()
+    {
+        HP = maxHP;
     }
     void Update()
     {
@@ -42,6 +45,17 @@ public class Player : MonoBehaviour
         sr.flipX = faceDir.x < 0;
         anim.SetBool("isMove", moveDir != Vector2.zero);
         
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            HP -= collision.GetComponent<Enemy>().damage;
+            if (HP <=0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
 }

@@ -512,6 +512,8 @@ MonoBehaviour:
   scanner: {fileID: 0}
   moveDir: {x: 0, y: 0}
   faceDir: {x: 0, y: 0}
+  HP: 0
+  maxHP: 100
   speed: 4
 --- !u!114 &1145793224
 MonoBehaviour:
