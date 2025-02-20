@@ -189,4 +189,5 @@ MonoBehaviour:
   CD: 1
   canBeatBack: 0
   backForce: 0
+  beatBack: 0
   srInitDir: {x: -1, y: 0, z: 0}

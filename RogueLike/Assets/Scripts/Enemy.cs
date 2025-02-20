@@ -39,10 +39,7 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            beatBack = true;
-        }
+
     }
 
     void FixedUpdate()
@@ -51,6 +48,8 @@ public class Enemy : MonoBehaviour
         float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
         float threshold = 0.1f; // 设置最近距离
         Vector2 moveDir = (targetDir * speed * Time.fixedDeltaTime - rb.position).normalized;
+        Debug.Log(" target: " + target.transform.position);
+        Debug.Log(" me: " + transform.position);
         if (beatBack)
         {
             rb.AddForce(-moveDir * 5, ForceMode2D.Impulse);
@@ -60,13 +59,13 @@ public class Enemy : MonoBehaviour
         {
             if (distanceToTarget > threshold)
             {
-
-                rb.velocity = moveDir;
+                //rb.MovePosition(rb.position + moveDir)
+                rb.velocity = targetDir*speed;
             }
             else
             {
                 // 当敌人接近目标时，停止移动
-                rb.velocity = (rb.position);
+                rb.velocity = Vector2.zero;
             }
         }
 
@@ -82,20 +81,16 @@ public class Enemy : MonoBehaviour
             if (HP > 0)
             {
                 HP -= collider.GetComponent<Projectile>().damage;
-                //StartCoroutine(KnockBack());
-                beatBack = true;
+                if (collider.GetComponent<Projectile>().canBeatBack)
+                {
+                    beatBack = true;
+                }
+
             }
             else
             {
                 gameObject.SetActive(false);
             }
         }
-    }
-    IEnumerator KnockBack() //击退 
-    {
-        yield return wait;
-        Vector3 playPos = GameManager.instance.player.transform.position;
-        Vector3 dir = (transform.position - playPos).normalized;
-        // rb.AddForce(dir * 100, ForceMode2D.Impulse);
     }
 }

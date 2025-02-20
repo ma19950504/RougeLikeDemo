@@ -17,7 +17,7 @@ public class Scanner : MonoBehaviour
     void Start()
     {
         // 初始化每个 prefabsId 对应的冷却时间
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i <  GameManager.instance.skillPoolManager.prefabs.Length; i++)
         {
             if (GameManager.instance.skillPoolManager.prefabs[i] != null)
             {
@@ -39,7 +39,7 @@ public class Scanner : MonoBehaviour
         if (nearestTarget != null)
         {
 
-            for (int prefabsId = 0; prefabsId <= GameManager.instance.skillPoolManager.prefabs.Length - 1; prefabsId++)
+            for (int prefabsId = 0; prefabsId < GameManager.instance.skillPoolManager.prefabs.Length; prefabsId++)
             {
                 timers[prefabsId] += Time.deltaTime;
 

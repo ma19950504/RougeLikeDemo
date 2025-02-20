@@ -126,7 +126,8 @@ MonoBehaviour:
   HP: 0
   damage: 8
   speed: 1.5
-  spawnTime: 0.5
+  spawnTime: 2
+  beatBack: 0
   target: {fileID: 0}
 --- !u!50 &2183384675408453735
 Rigidbody2D:
