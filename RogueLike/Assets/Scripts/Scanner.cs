@@ -21,12 +21,17 @@ public class Scanner : MonoBehaviour
         {
             if (GameManager.instance.skillPoolManager.prefabs[i] != null)
             {
+                if(GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>()){
                 cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>().CD;
+
+                }else if(GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Round>()){
+                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Round>().CD;
+                }
             }
         }
 
         // 初始化 timers 字典
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < GameManager.instance.skillPoolManager.prefabs.Length; i++)
         {
             timers[i] = 0f;
         }
@@ -80,6 +85,11 @@ public class Scanner : MonoBehaviour
         Vector3 targetPos = nearestTarget.position;
         Vector3 dir = (targetPos - transform.position).normalized;
         GameObject projectile = GameManager.instance.skillPoolManager.Get(prefabsId);
+        if(projectile.GetComponent<Projectile>()){
         projectile.GetComponent<Projectile>().Fire(dir, transform);
+
+        }else if(projectile.GetComponent<Round>()){
+            projectile.GetComponent<Round>().Fire(transform);
+        }
     }
 }

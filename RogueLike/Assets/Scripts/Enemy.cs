@@ -47,12 +47,10 @@ public class Enemy : MonoBehaviour
         Vector2 targetDir = (target.transform.position - transform.position).normalized;
         float distanceToTarget = Vector2.Distance(transform.position, target.transform.position);
         float threshold = 0.1f; // 设置最近距离
-        Vector2 moveDir = (targetDir * speed * Time.fixedDeltaTime - rb.position).normalized;
-        Debug.Log(" target: " + target.transform.position);
-        Debug.Log(" me: " + transform.position);
+        //Vector2 moveDir = (targetDir * speed * Time.fixedDeltaTime - rb.position).normalized;
         if (beatBack)
         {
-            rb.AddForce(-moveDir * 5, ForceMode2D.Impulse);
+            rb.AddForce(-targetDir * 15, ForceMode2D.Impulse);
             beatBack = false;
         }
         else
@@ -60,7 +58,7 @@ public class Enemy : MonoBehaviour
             if (distanceToTarget > threshold)
             {
                 //rb.MovePosition(rb.position + moveDir)
-                rb.velocity = targetDir*speed;
+                rb.velocity = targetDir * speed;
             }
             else
             {
@@ -80,17 +78,35 @@ public class Enemy : MonoBehaviour
         {
             if (HP > 0)
             {
-                HP -= collider.GetComponent<Projectile>().damage;
-                if (collider.GetComponent<Projectile>().canBeatBack)
+                if (collider.GetComponent<Projectile>())
                 {
-                    beatBack = true;
+                    HP -= collider.GetComponent<Projectile>().damage;
+                    CheckAndDeactivate();
+                    if (collider.GetComponent<Projectile>().canBeatBack)
+                    {
+                        beatBack = true;
+                    }
+                }
+                else if (collider.GetComponent<Round>())
+                {
+                    HP -= collider.GetComponent<Round>().damage;
+                    CheckAndDeactivate();
+                    if (collider.GetComponent<Round>().canBeatBack)
+                    {
+                        beatBack = true;
+                    }
                 }
 
+
             }
-            else
-            {
-                gameObject.SetActive(false);
-            }
+
+        }
+    }
+    void CheckAndDeactivate()
+    {
+        if (HP <= 0)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

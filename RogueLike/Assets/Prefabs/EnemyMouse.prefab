@@ -122,11 +122,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eacc1666e51db43abba7adb6d72560f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 2
+  maxHP: 10
   HP: 0
   damage: 8
   speed: 1.5
-  spawnTime: 2
+  spawnTime: 0.5
   beatBack: 0
   target: {fileID: 0}
 --- !u!50 &2183384675408453735
