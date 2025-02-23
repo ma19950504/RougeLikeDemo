@@ -87,11 +87,11 @@ public class Enemy : MonoBehaviour
                         beatBack = true;
                     }
                 }
-                else if (collider.GetComponent<Round>())
+                else if (collider.GetComponent<Orbit>())
                 {
-                    HP -= collider.GetComponent<Round>().damage;
+                    HP -= collider.GetComponent<Orbit>().damage;
                     CheckAndDeactivate();
-                    if (collider.GetComponent<Round>().canBeatBack)
+                    if (collider.GetComponent<Orbit>().canBeatBack)
                     {
                         beatBack = true;
                     }

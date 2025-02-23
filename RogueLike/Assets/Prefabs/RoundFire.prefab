@@ -183,8 +183,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff701715c648d4250ac218f717da245a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  sr: {fileID: 0}
   damage: 20
-  CD: 1
-  timer: 0
+  count: 0
+  speed: 0
+  CD: 0.2
+  per: 0
+  initPer: -1
+  level: 0
   canBeatBack: 1
   backForce: 0
+  srInitDir: {x: 0, y: 0, z: 0}
+  timer: 0

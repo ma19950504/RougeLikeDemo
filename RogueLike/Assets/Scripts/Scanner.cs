@@ -9,33 +9,14 @@ public class Scanner : MonoBehaviour
     public LayerMask targetLayer;
     public RaycastHit2D[] targets; //射线命中,检测范围内怪物成功时返回命中的object
     public Transform nearestTarget;
-
-    private Dictionary<int, float> timers = new Dictionary<int, float>();
-    private Dictionary<int, float> cds = new Dictionary<int, float>();
-
+    SkillPoolManager skillPoolManager;
 
     void Start()
     {
-        // 初始化每个 prefabsId 对应的冷却时间
-        for (int i = 0; i <  GameManager.instance.skillPoolManager.prefabs.Length; i++)
-        {
-            if (GameManager.instance.skillPoolManager.prefabs[i] != null)
-            {
-                if(GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>()){
-                cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Projectile>().CD;
-
-                }else if(GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Round>()){
-                    cds[i] = GameManager.instance.skillPoolManager.prefabs[i].GetComponent<Round>().CD;
-                }
-            }
-        }
-
-        // 初始化 timers 字典
-        for (int i = 0; i < GameManager.instance.skillPoolManager.prefabs.Length; i++)
-        {
-            timers[i] = 0f;
-        }
+        skillPoolManager = GameManager.instance.skillPoolManager;
     }
+
+
     void FixedUpdate()
     {
         // 当前对象的位置，射线范围，射线方向（全方向），最大距离（0为整个半径），检测图层
@@ -43,17 +24,7 @@ public class Scanner : MonoBehaviour
         nearestTarget = GetNearest();
         if (nearestTarget != null)
         {
-
-            for (int prefabsId = 0; prefabsId < GameManager.instance.skillPoolManager.prefabs.Length; prefabsId++)
-            {
-                timers[prefabsId] += Time.deltaTime;
-
-                if (timers[prefabsId] > cds[prefabsId])
-                {
-                    timers[prefabsId] = 0f;
-                    Fire(prefabsId);
-                }
-            }
+            skillPoolManager.GetEnemyPos(nearestTarget.position,transform.position);
         }
     }
 
@@ -80,16 +51,19 @@ public class Scanner : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, scanRange); // 绘制scanRange的圆
     }
 
-    public void Fire(int prefabsId)
-    {
-        Vector3 targetPos = nearestTarget.position;
-        Vector3 dir = (targetPos - transform.position).normalized;
-        GameObject projectile = GameManager.instance.skillPoolManager.Get(prefabsId);
-        if(projectile.GetComponent<Projectile>()){
-        projectile.GetComponent<Projectile>().Fire(dir, transform);
+    // public void Activate(int prefabsId)
+    // {
+    //     Vector3 targetPos = nearestTarget.position;
+    //     Vector3 dir = (targetPos - transform.position).normalized;
+    //     GameObject projectile = skillPoolManager.Get(prefabsId);
+    //     if (projectile.GetComponent<Projectile>())
+    //     {
+    //         projectile.GetComponent<Projectile>().Activate(dir, transform);
 
-        }else if(projectile.GetComponent<Round>()){
-            projectile.GetComponent<Round>().Fire(transform);
-        }
-    }
+    //     }
+    //     else if (projectile.GetComponent<Round>())
+    //     {
+    //         projectile.GetComponent<Round>().Fire(transform);
+    //     }
+    // }
 }
