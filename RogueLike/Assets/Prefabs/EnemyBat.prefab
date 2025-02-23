@@ -125,8 +125,8 @@ MonoBehaviour:
   maxHP: 16
   HP: 0
   damage: 10
-  speed: 2.5
-  spawnTime: 0.5
+  speed: 3
+  spawnTime: 0.25
   beatBack: 0
   target: {fileID: 0}
 --- !u!50 &8217629993148511375
