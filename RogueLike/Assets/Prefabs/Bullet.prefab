@@ -166,12 +166,11 @@ MonoBehaviour:
   damage: 5
   count: 0
   speed: 7
-  CD: 0.5
-  per: 1
+  CD: 0.2
+  per: 3
   initPer: 0
   level: 0
   canBeatBack: 1
   backForce: 100
-  canUse: 0
-  timer: 0
   srInitDir: {x: 0, y: 0, z: 0}
+  timer: 0

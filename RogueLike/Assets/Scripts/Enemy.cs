@@ -11,10 +11,8 @@ public class Enemy : MonoBehaviour
     public float HP;
     public float damage;
     public float speed;
-    public float spawnTime;
     public bool beatBack;
 
-    WaitForFixedUpdate wait;
     public Rigidbody2D target;
 
     void Awake()
@@ -22,7 +20,6 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
-        wait = new WaitForFixedUpdate();
     }
     void OnEnable()
     {

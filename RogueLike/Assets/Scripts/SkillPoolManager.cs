@@ -58,7 +58,7 @@ public class SkillPoolManager : MonoBehaviour
 
     }
 
-    public GameObject Init(int index)
+    public GameObject Init(int index)  //如果实例化了但是active是false，就激活，否则就实例化一个
     {
         GameObject select = null;
         foreach (GameObject item in pools[index])
@@ -82,7 +82,9 @@ public class SkillPoolManager : MonoBehaviour
     {
         GameObject skill = Init(prefabsId);
         skill.transform.position = player.transform.position;
+        
         skill.GetComponent<Skill>().Activate(skillDir, player.transform);
+        
     }
 
     public void GetEnemyPos(Vector3 enemyPos, Vector3 playerPos)

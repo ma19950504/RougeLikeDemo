@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Projectile : Skill
 {
-    
+
     public override void Activate(Vector3 dir, Transform playerPos)
     {
         rb.position = playerPos.position;
+        if (dir == Vector3.zero)
+        {
+            dir = Random.insideUnitSphere;
+            dir = new Vector3(dir.x, dir.y, 0);
+        }
         rb.velocity = dir * speed;
+        
         transform.rotation = Quaternion.FromToRotation(srInitDir, dir);
     }
 
@@ -24,5 +30,5 @@ public class Projectile : Skill
         }
 
     }
-  
+
 }
