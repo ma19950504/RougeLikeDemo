@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float HP;
     public float maxHP;
     public float speed;
+    private bool isPaused = false;
 
     void Awake()
     {
@@ -31,6 +32,14 @@ public class Player : MonoBehaviour
     {
         Move();
         //SkillSpawn();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // 切换暂停状态
+            isPaused = !isPaused;
+            // 根据暂停状态设置Time.timeScale
+            Time.timeScale = isPaused ? 0f : 1f;
+            
+        }
         
     }
     void FixedUpdate()
