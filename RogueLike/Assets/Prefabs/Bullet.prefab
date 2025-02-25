@@ -165,7 +165,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   damage: 5
   count: 0
-  speed: 7
+  speed: 12
   CD: 0.2
   per: 3
   initPer: 0

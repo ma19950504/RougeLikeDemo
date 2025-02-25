@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     Collider2D col;
+    Animator anim;
     public float maxHP;
     public float HP;
     public float damage;
@@ -20,6 +21,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
     }
     void OnEnable()
     {
@@ -103,7 +105,16 @@ public class Enemy : MonoBehaviour
     {
         if (HP <= 0)
         {
-            gameObject.SetActive(false);
+            speed = 0;
+            anim.SetBool("isDead",true);
+            StartCoroutine(DeactivateAfterAnimation());
         }
     }
+    IEnumerator DeactivateAfterAnimation()
+{
+    // 假设死亡动画的长度为 2 秒
+    float animationDuration = 2f;
+    yield return new WaitForSeconds(animationDuration);
+    gameObject.SetActive(false);
+}
 }

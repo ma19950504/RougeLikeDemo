@@ -123,6 +123,7 @@ public class EnemyPoolManager : MonoBehaviour
             {
                 select = item;
                 select.SetActive(true);
+                select.GetComponent<Animator>().SetBool("isDead",false);
                 select.transform.position = spawnPos; // 确保位置正确设置
                 break;
             }
