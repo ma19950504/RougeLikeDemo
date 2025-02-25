@@ -137,7 +137,8 @@ public class EnemyPoolManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (mainCamera == null)
+        if(Application.isPlaying) {
+            if (mainCamera == null)
         {
             mainCamera = Camera.main;
         }
@@ -179,5 +180,7 @@ public class EnemyPoolManager : MonoBehaviour
         // 画玩家周围的范围
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(player.transform.position, spawnRange);
+        }
+        
     }
 }

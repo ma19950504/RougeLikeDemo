@@ -24,7 +24,7 @@ public class Scanner : MonoBehaviour
         nearestTarget = GetNearest();
         if (nearestTarget != null)
         {
-            skillPoolManager.GetEnemyPos(nearestTarget.position,transform.position);
+            skillPoolManager.GetEnemyPos(nearestTarget.position, transform.position);
         }
     }
 
@@ -47,8 +47,12 @@ public class Scanner : MonoBehaviour
     }
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.red; // 设置Gizmo颜色
-        Gizmos.DrawWireSphere(transform.position, scanRange); // 绘制scanRange的圆
+        if (Application.isPlaying)
+        {
+            Gizmos.color = Color.red; // 设置Gizmo颜色
+            Gizmos.DrawWireSphere(transform.position, scanRange); // 绘制scanRange的圆
+        }
+
     }
 
     // public void Activate(int prefabsId)
